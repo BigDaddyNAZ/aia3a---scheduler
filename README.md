@@ -7,7 +7,7 @@ Built by the Seton Catholic Preparatory Athletic Department (Chandler, AZ)
 
 An interactive web tool supporting a proposed realignment of the AIA 3A conference into 7 regions for girls basketball, with full 18-game schedules for all 62 schools. Built to share with other athletic directors as a collaborative planning tool.
 
-**Live site:** https://[your-username].github.io/aia3a-scheduler/
+**Live site:** https://BigDaddyNAZ.github.io/aia3a---scheduler/
 
 ## Regions
 
