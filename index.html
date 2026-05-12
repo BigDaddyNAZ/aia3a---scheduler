@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIA 3A Girls Basketball · Region Alignment & Schedule Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<nav>
+  <div class="nav-brand">
+    <span class="badge">AIA 3A</span>
+    <span>Region Alignment &amp; Schedule Tool</span>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('map')">Map</button>
+    <button class="nav-tab" onclick="showPage('regions')">Regions</button>
+    <button class="nav-tab" onclick="showPage('schedules')">Schedules</button>
+    <button class="nav-tab" onclick="showPage('about')">About</button>
+  </div>
+  <div class="nav-right">2026–27 Season · Draft</div>
+</nav>
+
+<!-- ═══════════════ MAP PAGE ═══════════════ -->
+<div id="page-map" class="page active">
+<div class="container">
+  <div class="section-hdr">
+    <h2>Region alignment map</h2>
+    <p>Girls Basketball schedule proposal · AIA 3A · 2026–27. Greater Phoenix (10 schools) includes St. John Paul II, Odyssey &amp; Heritage Maricopa. ALA-Radiance moves to East Valley/Pinal.</p>
+  </div>
+  <div class="map-layout">
+    <div>
+      <div class="map-card">
+        <div class="map-toolbar">
+          <button class="pill on" onclick="setMapView('all')">All regions</button>
+          <button class="pill" onclick="setMapView('rim_exp')">Rim + Flagstaff</button>
+          <button class="pill" onclick="setMapView('west')">West/Yuma expanded</button>
+          <button class="pill" onclick="setMapView('yuma_a')">Yuma / Colorado River</button>
+          <button class="pill" onclick="setMapView('yuma_b')">Kingman / Prescott</button>
+          <button class="pill" onclick="setMapView('navajo')">Navajo/North expanded</button>
+          <button class="pill" onclick="setMapView('orig')">3A only</button>
+        </div>
+        <div class="map-container">
+          <svg id="azmap" viewBox="0 0 620 520"></svg>
+          <div id="map-tooltip"><div class="tt-name" id="tt-name"></div><div class="tt-meta" id="tt-meta"></div></div>
+        </div>
+        <div id="map-note-bar" style="padding:.5rem 1rem;background:var(--bg2);font-size:11px;color:var(--text2);border-top:1px solid var(--border);line-height:1.5"></div>
+        <div class="map-legend">
+          <span class="leg-item"><span class="leg-dot" style="background:#555"></span>3A original</span>
+          <span class="leg-item"><span style="display:inline-block;width:10px;height:10px;transform:rotate(45deg);background:#555;flex-shrink:0"></span>&nbsp;4A proposed</span>
+          <span class="leg-item"><span style="display:inline-block;width:9px;height:9px;background:#555;border-radius:1px;flex-shrink:0"></span>&nbsp;2A proposed</span>
+          <span style="margin-left:8px;font-size:11px;color:var(--text3)">Dashed ring = new addition &nbsp;|&nbsp; Color = region</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="panel" id="map-info-panel">
+        <div class="panel-hdr"><h3>School details</h3><span id="map-info-region" style="font-size:12px;color:var(--text3)"></span></div>
+        <div class="panel-body" id="map-info-body">
+          <div class="info-empty">Hover a school on the map to see details</div>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:1rem">
+        <div class="panel-hdr"><h3>Region summary</h3></div>
+        <div class="panel-body" id="map-region-summary">
+          <div id="region-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ REGIONS PAGE ═══════════════ -->
+<div id="page-regions" class="page">
+<div class="container">
+  <div class="section-hdr">
+    <h2>Region compositions</h2>
+    <p>Click any school to view their schedule. Schools with dashed borders are proposed cross-conference additions (2A or 4A) to improve scheduling viability.</p>
+  </div>
+  <div class="regions-grid" id="regions-grid"></div>
+</div>
+</div>
+
+<!-- ═══════════════ SCHEDULES PAGE ═══════════════ -->
+<div id="page-schedules" class="page">
+<div class="container">
+  <div class="section-hdr">
+    <h2>School schedules</h2>
+    <p>Girls Basketball · 2026–27 season · Nov 18 – Jan 30. When girls play home, boys travel (and vice versa). All 62 schools across 7 regions.</p>
+  </div>
+  <div class="schedule-layout">
+    <div class="school-list-panel" id="school-list-panel">
+          <div class="slp-section">Greater Phoenix</div>
+      <div id="slp-gp"></div>
+      <div class="slp-section">East Valley / Pinal</div>
+      <div id="slp-ev"></div>
+      <div class="slp-section">Rim Country</div>
+      <div id="slp-rc"></div>
+      <div class="slp-section">Navajo / North</div>
+      <div id="slp-nn"></div>
+      <div class="slp-section">Tucson / South</div>
+      <div id="slp-ts"></div>
+      <div class="slp-section">Yuma / Colorado River</div>
+      <div id="slp-yc"></div>
+      <div class="slp-section">Kingman / Prescott</div>
+      <div id="slp-kp"></div>
+    <div>
+      <div class="card-sm">
+        <h4>Season window</h4>
+        <p>Nov 18, 2026 – Feb 4, 2027</p>
+      </div>
+      <div class="card-sm">
+        <h4>Conference totals</h4>
+        <p><span class="stat-big">48</span> 3A schools across 6 regions</p>
+      </div>
+      <div class="card-sm">
+        <h4>Regions</h4>
+        <p>Greater Phoenix · East Valley/Pinal · Rim Country · Navajo/North · Tucson/South · West/Yuma</p>
+      </div>
+      <div class="card-sm">
+        <h4>Prepared by</h4>
+        <p>Seton Catholic Preparatory<br>Office of the Athletic Director<br>Chandler, Arizona</p>
+      </div>
+      <div class="card-sm" style="border-color:var(--gold);background:var(--gold-light)">
+        <h4 style="color:#5A3C0A">Confidential draft</h4>
+        <p style="color:#7A5010">For internal planning and inter-school coordination only. Not for public distribution.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <!-- Map school data -->
+  <script src="data/schools.js"></script>
+
+  <!-- Schedule data + app init -->
+  <script>
+    fetch('data/schedules.json')
+      .then(r => r.json())
+      .then(data => {
+        window.SCHEDULES = data;
+        initApp();
+      })
+      .catch(err => console.error('Could not load schedule data:', err));
+  </script>
+
+  <!-- App logic -->
+  <script src="js/app.js"></script>
+</body>
+</html>

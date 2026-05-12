@@ -1,0 +1,154 @@
+/* AIA 3A Girls Basketball · Region Alignment & Schedule Tool */
+/* Seton Catholic Preparatory Athletic Department · 2026-27 */
+
+:root {
+  --navy: #0F1E35;
+  --gold: #C4922A;
+  --gold-light: #F5E8CC;
+  --bg: #F8F6F1;
+  --bg2: #EFECE4;
+  --bg3: #E4E0D5;
+  --border: rgba(15,30,53,0.12);
+  --border2: rgba(15,30,53,0.22);
+  --text: #0F1E35;
+  --text2: #4A5568;
+  --text3: #8A94A6;
+  --white: #FFFFFF;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 1px 3px rgba(15,30,53,0.08), 0 4px 12px rgba(15,30,53,0.06);
+  --shadow-md: 0 4px 16px rgba(15,30,53,0.12);
+  /* Region colors */
+  --c-metro: #185FA5;
+  --c-east: #0F6E56;
+  --c-rim: #993C1D;
+  --c-navajo: #534AB7;
+  --c-south: #3B6D11;
+  --c-west: #854F0B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.55;min-height:100vh}
+a{color:var(--gold);text-decoration:none}
+h1,h2,h3,h4{font-weight:500;line-height:1.25}
+
+/* ── TOP NAV ── */
+nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
+.nav-brand{display:flex;align-items:center;gap:10px;color:var(--white)}
+.nav-brand .badge{background:var(--gold);color:var(--navy);font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;letter-spacing:.04em}
+.nav-brand span{font-size:15px;font-weight:500;opacity:.9}
+.nav-tabs{display:flex;gap:2px}
+.nav-tab{color:rgba(255,255,255,.6);font-size:13px;padding:6px 14px;border-radius:6px;cursor:pointer;border:none;background:transparent;transition:all .15s}
+.nav-tab:hover{color:var(--white);background:rgba(255,255,255,.08)}
+.nav-tab.active{color:var(--white);background:rgba(255,255,255,.14)}
+.nav-right{font-size:12px;color:rgba(255,255,255,.5)}
+
+/* ── LAYOUT ── */
+.page{display:none;animation:fadeIn .2s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.container{max-width:1280px;margin:0 auto;padding:2rem}
+.section-hdr{margin-bottom:1.5rem}
+.section-hdr h2{font-size:1.4rem;color:var(--navy);margin-bottom:.3rem}
+.section-hdr p{font-size:.9rem;color:var(--text2)}
+
+/* ── MAP PAGE ── */
+.map-layout{display:grid;grid-template-columns:1fr 320px;gap:1.5rem;align-items:start}
+@media(max-width:900px){.map-layout{grid-template-columns:1fr}}
+.map-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+.map-toolbar{padding:.75rem 1rem;border-bottom:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:var(--bg)}
+.map-container{position:relative;background:#e8e2d8}
+svg#azmap{width:100%;display:block}
+.map-legend{padding:.65rem 1rem;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:10px;background:var(--bg)}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+/* Panel */
+.panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden}
+.panel-hdr{padding:.75rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.panel-hdr h3{font-size:.95rem;font-weight:500}
+.panel-body{padding:1rem}
+.info-empty{font-size:.85rem;color:var(--text3);text-align:center;padding:2rem 1rem}
+
+.region-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;padding:3px 10px;border-radius:20px;font-weight:500}
+.stat-row{display:flex;justify-content:space-between;font-size:.85rem;padding:6px 0;border-bottom:1px solid var(--border)}
+.stat-row:last-child{border-bottom:none}
+.stat-label{color:var(--text2)}
+.stat-val{font-weight:500;font-family:'DM Mono',monospace;font-size:.82rem}
+
+/* ── REGIONS PAGE ── */
+.regions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.region-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);transition:box-shadow .15s}
+.region-card:hover{box-shadow:var(--shadow-md)}
+.region-card-hdr{padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between}
+.region-card-hdr h3{font-size:.95rem;font-weight:500;color:var(--white)}
+.region-card-body{padding:.75rem 1rem}
+.school-chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 8px;border-radius:5px;margin:2px;cursor:pointer;transition:opacity .1s;border:1px solid transparent}
+.school-chip:hover{opacity:.8}
+.school-chip.new{border-style:dashed}
+.chip-conf{font-size:10px;opacity:.7;font-family:'DM Mono',monospace}
+.region-note{font-size:.8rem;color:var(--text2);margin-top:.75rem;padding:.6rem .75rem;border-radius:6px;background:var(--bg);border-left:3px solid var(--border2)}
+.flag-note{border-left-color:#E24B4A;background:#FFF5F5;color:#7A1A1A}
+
+/* ── SCHEDULE PAGE ── */
+.schedule-layout{display:grid;grid-template-columns:260px 1fr;gap:1.5rem;align-items:start}
+@media(max-width:860px){.schedule-layout{grid-template-columns:1fr}}
+.school-list-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;position:sticky;top:70px}
+.slp-section{padding:.5rem .75rem .25rem;font-size:11px;font-weight:500;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;background:var(--bg);border-bottom:1px solid var(--border)}
+.slp-school{padding:.55rem 1rem;font-size:.875rem;cursor:pointer;border-bottom:1px solid var(--border);transition:background .1s;display:flex;align-items:center;gap:8px}
+.slp-school:hover{background:var(--bg)}
+.slp-school.active{background:var(--gold-light)}
+.slp-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.schedule-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden}
+.sc-hdr{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+.sc-hdr h2{font-size:1.2rem;font-weight:500}
+.sc-hdr .meta{font-size:.82rem;color:var(--text2);margin-top:.2rem}
+.sc-stats{display:flex;gap:1rem;flex-wrap:wrap;padding:.75rem 1.25rem;border-bottom:1px solid var(--border);background:var(--bg)}
+.sc-stat{text-align:center}
+.sc-stat .n{font-size:1.4rem;font-weight:500;font-family:'DM Mono',monospace;line-height:1}
+.sc-stat .l{font-size:10px;color:var(--text3);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.sched-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.sched-table th{padding:.55rem .85rem;background:var(--navy);color:rgba(255,255,255,.7);text-align:left;font-weight:400;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+.sched-table td{padding:.55rem .85rem;border-bottom:1px solid var(--border)}
+.sched-table tr:last-child td{border-bottom:none}
+.sched-table tr:hover td{background:var(--bg)}
+.sched-table tr.break-row td{background:var(--gold-light);color:#7A5010;font-size:.8rem;font-weight:500;text-align:center;padding:.4rem}
+.game-type{display:inline-block;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:500;white-space:nowrap}
+.t-rgn{background:#E6F1FB;color:#0C447C}
+.t-long{background:#FAECE7;color:#712B13}
+.t-long2{background:#F5E0F5;color:#5C1A8B}
+.t-lh{background:#EEEDFE;color:#3C3489}
+.t-lh2{background:#E8D8FA;color:#3D0F66}
+.t-near{background:#EAF3DE;color:#27500A}
+.ha-h{background:#E6F1FB;color:#0C447C;padding:2px 7px;border-radius:4px;font-size:12px;font-weight:500;font-family:'DM Mono',monospace}
+.ha-a{background:#FFF2E0;color:#633806;padding:2px 7px;border-radius:4px;font-size:12px;font-weight:500;font-family:'DM Mono',monospace}
+.wk-hdr{background:var(--bg2)!important;color:var(--text3)!important;font-size:.78rem!important;font-weight:500}
+.dist-cell{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--text2)}
+.note-cell{font-size:.78rem;color:var(--text3);font-style:italic}
+.contract-note{margin:.75rem 1.25rem;padding:.65rem .85rem;background:var(--gold-light);border-radius:7px;border-left:3px solid var(--gold);font-size:.8rem;color:#5A3C0A}
+
+/* ── TOOLTIP ── */
+#map-tooltip{position:absolute;background:var(--navy);color:var(--white);border-radius:7px;padding:7px 12px;font-size:12px;pointer-events:none;display:none;z-index:200;min-width:140px;max-width:200px}
+#map-tooltip .tt-name{font-weight:500;margin-bottom:2px}
+#map-tooltip .tt-meta{font-size:11px;opacity:.7}
+
+/* ── PILL BUTTONS ── */
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:4px 12px;border:.5px solid var(--border2);border-radius:20px;cursor:pointer;background:transparent;color:var(--text2);font-family:'DM Sans',sans-serif;transition:all .12s}
+.pill:hover{background:var(--bg2)}
+.pill.on{background:var(--navy);color:var(--white);border-color:var(--navy)}
+
+/* ── ABOUT PAGE ── */
+.about-grid{display:grid;grid-template-columns:2fr 1fr;gap:2rem}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr}}
+.prose h3{font-size:1rem;font-weight:500;margin:1.5rem 0 .5rem;color:var(--navy)}
+.prose p{font-size:.9rem;color:var(--text2);margin-bottom:.75rem;line-height:1.65}
+.prose ul{padding-left:1.2rem;font-size:.9rem;color:var(--text2);line-height:1.8}
+.card-sm{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;box-shadow:var(--shadow);margin-bottom:1rem}
+.card-sm h4{font-size:.88rem;font-weight:500;margin-bottom:.5rem}
+.card-sm p{font-size:.82rem;color:var(--text2);line-height:1.55}
+.stat-big{font-size:2rem;font-weight:300;font-family:'DM Mono',monospace;color:var(--navy);display:block}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:3px}
